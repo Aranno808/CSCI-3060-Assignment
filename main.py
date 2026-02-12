@@ -33,7 +33,7 @@ def main():
 def handle_login():
     # Get the session kind from the user
     while True:
-        kind = input("Enter session kind (admin/standard): ").strip().lower()
+        kind = get_text("Enter session kind (admin/standard): ")
         if kind not in ["admin", "standard"]:
             print("Invalid session kind. Please enter 'admin' or 'standard'.")
             continue
@@ -43,13 +43,7 @@ def handle_login():
     # Get the account holder name if the session kind is standard
     account_holder_name = None
     if kind == "standard":
-        while True:
-            account_holder_name = input("Enter account holder name: ").strip()
-            if not account_holder_name:
-                print("Account holder name cannot be empty. Please enter a valid name.")
-                continue
-            else:
-                break
+        account_holder_name = get_text("Enter account holder name: ")
 
     # Create a new session
     session = Session(kind, account_holder_name)
@@ -72,19 +66,11 @@ def handle_withdrawal(session: Session, transaction_handler: TransactionHandler)
     else:
         account_holder_name = session.account_holder_name
 
-    account_number = input("Enter account number: ").strip()
-    if not account_number.isdigit():
-        print("Invalid account number. Please enter a valid account number.")
-        return
-    account_number = int(account_number)
+    account_number = get_int("Enter account number: ")
 
-    amount = input("Enter amount to withdraw: ").strip()
-    if not amount.isdigit():
-        print("Invalid amount. Please enter a valid amount.")
-        return
-    amount = int(amount)
+    amount = get_float("Enter amount to withdraw: ")
 
-    transaction_handler.handle_withdrawal(account_holder_name, account_number, amount)
+    transaction_handler.withdrawal(account_holder_name, account_number, amount)
 
 
 def handle_transfer(session: Session, transaction_handler: TransactionHandler):
@@ -97,29 +83,136 @@ def handle_transfer(session: Session, transaction_handler: TransactionHandler):
         from_account_holder_name = session.account_holder_name
 
     # Ask for the account number that the money will be transferred from
-    from_account_number = input("Enter account number to transfer from: ").strip()
-    if not from_account_number.isdigit():
-        print("Invalid account number. Please enter a valid account number.")
-        return
-    from_account_number = int(from_account_number)
+    from_account_number = get_int("Enter account number to transfer from: ")
 
     # Ask for the account number that the money will be transferred to
-    to_account_number = input("Enter account number to transfer to: ").strip()
-    if not to_account_number.isdigit():
-        print("Invalid account number. Please enter a valid account number.")
-        return
-    to_account_number = int(to_account_number)
+    to_account_number = get_int("Enter account number to transfer to: ")
 
     # Ask for the amount to transfer
-    amount = input("Enter amount to transfer: ").strip()
-    if not amount.isdigit():
-        print("Invalid amount. Please enter a valid amount.")
-        return
-    amount = int(amount)
+    amount = get_float("Enter amount to transfer: ")
 
-    transaction_handler.handle_transfer(
+    transaction_handler.transfer(
         from_account_holder_name, from_account_number, to_account_number, amount
     )
+
+
+def handle_paybill(session: Session, transaction_handler: TransactionHandler):
+    """Pay a bill with money from an account."""
+
+    # Ask for the account holder's name (if logged in as admin)
+    if session.kind == "admin":
+        account_holder_name = get_text("Enter account holder name: ")
+    else:
+        account_holder_name = session.account_holder_name
+
+    # Ask for the account number
+    account_number = get_int("Enter account number: ")
+
+    # Ask for the company to whom the bill is being paid
+    company = get_text("Enter company name: ")
+    if company not in {
+        "The Bright Light Electric Company (EC)",
+        "Credit Card Company Q (CQ)",
+        "Fast Internet, Inc. (FI)",
+    }:
+        print("Invalid company name. Please enter a valid company name.")
+        return
+
+    # Ask for the amount to pay
+    amount = get_float("Enter amount to pay: ")
+
+    transaction_handler.paybill(account_holder_name, account_number, amount, company)
+
+
+def handle_deposit(session: Session, transaction_handler: TransactionHandler):
+    """Deposit money into an account."""
+
+    # Ask for the account holder's name (if logged in as admin)
+    if session.kind == "admin":
+        account_holder_name = get_text("Enter account holder name: ")
+    else:
+        account_holder_name = session.account_holder_name
+
+    # Ask for the account number
+    account_number = get_int("Enter account number: ")
+
+    # Ask for the amount to deposit
+    amount = get_float("Enter amount to deposit: ")
+
+    transaction_handler.deposit(account_holder_name, account_number, amount)
+
+
+def handle_create(session: Session, transaction_handler: TransactionHandler):
+    """Create a new account."""
+
+    # Ask for the account holder's name
+    account_holder_name = get_text("Enter account holder name: ")
+
+    # Ask for the initial balance
+    initial_balance = get_float("Enter initial balance: ")
+
+    transaction_handler.create(account_holder_name, initial_balance)
+
+
+def handle_delete(session: Session, transaction_handler: TransactionHandler):
+    """Delete an account."""
+
+    # Ask for the account holder's name
+    account_holder_name = get_text("Enter account holder name: ")
+
+    # Ask for the account number
+    account_number = get_int("Enter account number: ")
+
+    transaction_handler.delete(account_holder_name, account_number)
+
+
+def handle_disable(session: Session, transaction_handler: TransactionHandler):
+    """Disable an account."""
+
+    # Ask for the account holder's name
+    account_holder_name = get_text("Enter account holder name: ")
+
+    # Ask for the account number
+    account_number = get_int("Enter account number: ")
+
+    transaction_handler.disable(account_holder_name, account_number)
+
+
+def handle_changeplan(session: Session, transaction_handler: TransactionHandler):
+    """Change the payment plan of an account."""
+
+    # Ask for the account holder's name
+    account_holder_name = get_text("Enter account holder name: ")
+
+    # Ask for the account number
+    account_number = get_int("Enter account number: ")
+
+    transaction_handler.changeplan(account_holder_name, account_number)
+
+
+def get_text(prompt: str) -> str:
+    while True:
+        text = input(prompt).strip()
+        if text:
+            return text
+
+
+def get_int(prompt: str) -> int:
+    while True:
+        text = input(prompt).strip()
+        if text.isdigit():
+            return int(text)
+        else:
+            print("Please enter a valid integer.")
+
+
+def get_float(prompt: str) -> float:
+    while True:
+        text = input(prompt).strip()
+        try:
+            return float(text)
+        except ValueError:
+            print("Please enter a valid number.")
 
 
 if __name__ == "__main__":

@@ -1,8 +1,25 @@
+from enum import Enum
+
+
+class AccountPaymentPlan(Enum):
+    STUDENT = "SP"
+    NON_STUDENT = "NP"
+
+
 class Account:
-    def __init__(self, account_holder_name: str, account_number: int, balance: float):
+    def __init__(
+        self,
+        account_holder_name: str,
+        account_number: int,
+        balance: float,
+        is_active: bool = True,
+        account_payment_plan: AccountPaymentPlan = AccountPaymentPlan.STUDENT,
+    ):
         self.account_holder_name = account_holder_name
         self.account_number = account_number
         self.balance = balance
+        self.is_active = is_active
+        self.account_payment_plan = account_payment_plan
 
 
 def read_accounts() -> dict[int, Account]:
