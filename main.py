@@ -21,7 +21,7 @@ def main():
             continue
 
         transaction_handler = TransactionHandler(session)
-        
+
         if command == "login":
             session = handle_login()
         elif command == "logout":
@@ -85,6 +85,41 @@ def handle_withdrawal(session: Session, transaction_handler: TransactionHandler)
     amount = int(amount)
 
     transaction_handler.handle_withdrawal(account_holder_name, account_number, amount)
+
+
+def handle_transfer(session: Session, transaction_handler: TransactionHandler):
+    """Transfer money from one account to another."""
+
+    # Ask for the account holder's name (if logged in as admin)
+    if session.kind == "admin":
+        from_account_holder_name = input("Enter account holder name: ").strip()
+    else:
+        from_account_holder_name = session.account_holder_name
+
+    # Ask for the account number that the money will be transferred from
+    from_account_number = input("Enter account number to transfer from: ").strip()
+    if not from_account_number.isdigit():
+        print("Invalid account number. Please enter a valid account number.")
+        return
+    from_account_number = int(from_account_number)
+
+    # Ask for the account number that the money will be transferred to
+    to_account_number = input("Enter account number to transfer to: ").strip()
+    if not to_account_number.isdigit():
+        print("Invalid account number. Please enter a valid account number.")
+        return
+    to_account_number = int(to_account_number)
+
+    # Ask for the amount to transfer
+    amount = input("Enter amount to transfer: ").strip()
+    if not amount.isdigit():
+        print("Invalid amount. Please enter a valid amount.")
+        return
+    amount = int(amount)
+
+    transaction_handler.handle_transfer(
+        from_account_holder_name, from_account_number, to_account_number, amount
+    )
 
 
 if __name__ == "__main__":

@@ -1,9 +1,11 @@
-from account import Account
-from transaction import Transaction
+from account import Account, read_accounts
 
 
 class Session:
     def __init__(self, kind: str, account_holder_name: str | None = None):
+        # TODO: Remove this import.
+        from transaction import Transaction
+
         # Validate the session details
         if kind not in {"standard", "admin"}:
             raise ValueError("Invalid session kind. Must be 'admin' or 'standard'.")
@@ -23,7 +25,7 @@ class Session:
         self.transactions: list[Transaction] = []
 
     def read_accounts(self):
-        print(NotImplemented)
+        return read_accounts()
 
     def write_transactions(self):
         print(NotImplemented)
