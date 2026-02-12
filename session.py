@@ -28,4 +28,26 @@ class Session:
         return read_accounts()
 
     def write_transactions(self):
-        print(NotImplemented)
+        from transaction import TransactionCode
+
+        with open("transactions.txt", "w") as f:
+            for transaction in self.transactions:
+                parts = [
+                    f"{transaction.code.value:02} ",
+                    transaction.account_holder_name.ljust(20),
+                    f"{transaction.account_number:05}",
+                    f"{transaction.amount:.2f}".zfill(8),
+                ]
+
+                if transaction.miscellaneous is not None:
+                    parts.append(str(transaction.miscellaneous).ljust(2))
+                else:
+                    parts.append("  ")
+
+                line = " ".join(parts)
+                f.write(line + "\n")
+
+            # The sequence of transactions ends with an end of session transaction code
+            f.write(
+                f"{TransactionCode.END.value:02} {''.ljust(20)} {'00000'} {'00000.00'} {'  '}\n"
+            )
