@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from enum import Enum
 
 
@@ -23,9 +25,31 @@ class Account:
 
 
 def read_accounts() -> dict[int, Account]:
-    print("Simulating account loading...")
-    return {
-        10000: Account("Alice", 10000, 1000.00),
-        10001: Account("Bob", 10001, 500.00),
-        10002: Account("Charlie", 10002, 200.00),
-    }
+    accounts = dict()
+
+    filename = "accounts.txt"
+    if not Path(filename).exists():
+        return accounts
+
+    with open(filename, "r") as f:
+        for line in f:
+            line = line.rstrip("\n")
+            if not line:
+                continue
+
+            account_holder_name = line[6:26].strip()
+            if account_holder_name == "END_OF_FILE":
+                break
+
+            account_number = int(line[0:5])
+
+            status = line[27]
+            is_active = status == "A"
+
+            balance = float(line[29:37])
+
+            accounts[account_number] = Account(
+                account_holder_name, account_number, balance, is_active
+            )
+
+    return accounts
