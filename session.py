@@ -36,7 +36,7 @@ class Session:
         with open("transactions.txt", "w") as f:
             for transaction in self.transactions:
                 parts = [
-                    f"{transaction.code.value:02} ",
+                    f"{transaction.code.value:02}",
                     transaction.account_holder_name.ljust(20),
                     f"{transaction.account_number:05}",
                     f"{transaction.amount:.2f}".zfill(8),
