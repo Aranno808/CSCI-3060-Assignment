@@ -59,6 +59,7 @@ def read_accounts() -> dict[int, Account]:
     return accounts
 
 def write_accounts(accounts: dict[int, Account]):
+    """Write to the accounts.txt file and store a dictionary mapping account values to Account objects."""
     filename = "accounts.txt"
     with open(filename, "w") as f:
         for account in accounts.values():

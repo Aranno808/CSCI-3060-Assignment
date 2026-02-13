@@ -88,7 +88,7 @@ def handle_login() -> Session:
 
 
 def handle_logout(session: Session):
-    """Log out of the current session and write the transactions to the file."""
+    """Log out of the current session and write the account changes and transactions to their respective files."""
     # Write the current session's transactions to the file
     session.write_transactions()
     write_accounts(session.accounts)
