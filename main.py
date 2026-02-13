@@ -106,7 +106,7 @@ def handle_withdrawal(session: Session, transaction_handler: TransactionHandler)
 
     amount = get_float("Enter amount to withdraw: ")
 
-    transaction_handler.withdrawal(account_holder_name, account_number, amount)
+    return transaction_handler.withdrawal(account_holder_name, account_number, amount)
 
 
 def handle_transfer(session: Session, transaction_handler: TransactionHandler):
@@ -127,7 +127,7 @@ def handle_transfer(session: Session, transaction_handler: TransactionHandler):
     # Ask for the amount to transfer
     amount = get_float("Enter amount to transfer: ")
 
-    transaction_handler.transfer(
+    return transaction_handler.transfer(
         from_account_holder_name, from_account_number, to_account_number, amount
     )
 
@@ -153,7 +153,9 @@ def handle_paybill(session: Session, transaction_handler: TransactionHandler):
     # Ask for the amount to pay
     amount = get_float("Enter amount to pay: ")
 
-    transaction_handler.paybill(account_holder_name, account_number, amount, company)
+    return transaction_handler.paybill(
+        account_holder_name, account_number, amount, company
+    )
 
 
 def handle_deposit(session: Session, transaction_handler: TransactionHandler):
@@ -171,7 +173,7 @@ def handle_deposit(session: Session, transaction_handler: TransactionHandler):
     # Ask for the amount to deposit
     amount = get_float("Enter amount to deposit: ")
 
-    transaction_handler.deposit(account_holder_name, account_number, amount)
+    return transaction_handler.deposit(account_holder_name, account_number, amount)
 
 
 def handle_create(session: Session, transaction_handler: TransactionHandler):
@@ -183,7 +185,7 @@ def handle_create(session: Session, transaction_handler: TransactionHandler):
     # Ask for the initial balance
     initial_balance = get_float("Enter initial balance: ")
 
-    transaction_handler.create(account_holder_name, initial_balance)
+    return transaction_handler.create(account_holder_name, initial_balance)
 
 
 def handle_delete(session: Session, transaction_handler: TransactionHandler):
@@ -195,7 +197,7 @@ def handle_delete(session: Session, transaction_handler: TransactionHandler):
     # Ask for the account number
     account_number = get_int("Enter account number: ")
 
-    transaction_handler.delete(account_holder_name, account_number)
+    return transaction_handler.delete(account_holder_name, account_number)
 
 
 def handle_disable(session: Session, transaction_handler: TransactionHandler):
@@ -207,7 +209,7 @@ def handle_disable(session: Session, transaction_handler: TransactionHandler):
     # Ask for the account number
     account_number = get_int("Enter account number: ")
 
-    transaction_handler.disable(account_holder_name, account_number)
+    return transaction_handler.disable(account_holder_name, account_number)
 
 
 def handle_changeplan(session: Session, transaction_handler: TransactionHandler):
@@ -219,7 +221,7 @@ def handle_changeplan(session: Session, transaction_handler: TransactionHandler)
     # Ask for the account number
     account_number = get_int("Enter account number: ")
 
-    transaction_handler.changeplan(account_holder_name, account_number)
+    return transaction_handler.changeplan(account_holder_name, account_number)
 
 
 def get_text(prompt: str) -> str:
@@ -251,4 +253,7 @@ def get_float(prompt: str) -> float:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nExiting...")

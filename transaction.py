@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 
 class TransactionCode(Enum):
     """Represents the different types of transactions that can be performed in the banking system."""
+
     END = 0
     WITHDRAWAL = 1
     TRANSFER = 2
@@ -53,7 +54,7 @@ class TransactionHandler:
                     "Bank account must be a valid account for the account holder currently logged in."
                 )
                 return
-                
+
             # Ensure that transaction limits for the session are not exceeded
             current_total = self.session.transaction_totals[TransactionCode.WITHDRAWAL]
             if current_total + amount > 500:
