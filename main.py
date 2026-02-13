@@ -28,6 +28,22 @@ def main():
             session = handle_logout(session)
         elif command == "withdrawal":
             handle_withdrawal(session, transaction_handler)
+        elif command == "transfer":
+            handle_transfer(session, transaction_handler)
+        elif command == "paybill":
+            handle_paybill(session, transaction_handler)
+        elif command == "deposit":
+            handle_deposit(session, transaction_handler)
+        elif command == "create":
+            handle_create(session, transaction_handler)
+        elif command == "delete":
+            handle_delete(session, transaction_handler)
+        elif command == "disable":
+            handle_disable(session, transaction_handler)
+        elif command == "changeplan":
+            handle_changeplan(session, transaction_handler)
+        else:
+            print("Invalid command.")
 
 
 def handle_login():
