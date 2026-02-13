@@ -126,12 +126,8 @@ def handle_paybill(session: Session, transaction_handler: TransactionHandler):
 
     # Ask for the company to whom the bill is being paid
     company = get_text("Enter company name: ")
-    if company not in {
-        "The Bright Light Electric Company (EC)",
-        "Credit Card Company Q (CQ)",
-        "Fast Internet, Inc. (FI)",
-    }:
-        print("Invalid company name. Please enter a valid company name.")
+    if company not in {"EC", "CQ", "FI"}:
+        print("Invalid company name.")
         return
 
     # Ask for the amount to pay
