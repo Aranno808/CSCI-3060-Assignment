@@ -240,6 +240,10 @@ class TransactionHandler:
             print("Account number must be a valid account.")
             return
 
+        if account.account_holder_name != account_holder_name:
+            print("Account holder's name must match the account number.")
+            return
+
         # No further transactions should be accepted on a deleted account
         self.session.accounts.pop(account_number)
 
@@ -263,6 +267,10 @@ class TransactionHandler:
             print("Account number must be a valid account.")
             return
 
+        if account.account_holder_name != account_holder_name:
+            print("Account holder's name must match the account number.")
+            return
+
         # No further transactions should be accepted on a disabled account
         account.is_active = False
 
@@ -284,6 +292,10 @@ class TransactionHandler:
         account = self.session.accounts.get(account_number)
         if account is None:
             print("Account number must be a valid account.")
+            return
+
+        if account.account_holder_name != account_holder_name:
+            print("Account holder's name must match the account number.")
             return
 
         # Change the account's payment plan to non-student
