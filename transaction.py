@@ -320,9 +320,3 @@ class TransactionHandler:
         self.session.transactions.append(transaction)
 
         return transaction
-
-    def check_for_admin_privileges(self) -> bool:
-        if self.session.kind != "admin":
-            print("You must log in as an admin to perform this transaction.")
-            return False
-        return True
