@@ -1,8 +1,17 @@
+"""
+This is the main module for the frontend of the banking system. The frontend takes in transactions
+on standard input, handles them, and produces responses on standard output. At the beginning of a
+session, the master list of accounts is loaded from "accounts.txt". At the end of a session, the
+transactions for that session are written to "transactions.txt" in the format specified in the project
+description.
+"""
+
 from session import Session
 from transaction import TransactionHandler
 
 
 def main():
+    """Handle user input and perform transactions."""
 
     session = None
 
@@ -22,6 +31,7 @@ def main():
 
         transaction_handler = TransactionHandler(session)
 
+        # Handle login and logout separately since they don't produce transactions
         if command == "login":
             session = handle_login()
             continue
@@ -29,6 +39,7 @@ def main():
             session = handle_logout(session)
             continue
 
+        # Handle the transaction and add it to the session's transaction list
         transaction = None
         if command == "withdrawal":
             transaction = handle_withdrawal(session, transaction_handler)
@@ -53,7 +64,8 @@ def main():
             session.transactions.append(transaction)
 
 
-def handle_login():
+def handle_login() -> Session:
+    """Prompt the user for input to log in and create a new session."""
     # Get the session kind from the user
     while True:
         kind = get_text("Enter session kind (admin/standard): ")
@@ -75,6 +87,7 @@ def handle_login():
 
 
 def handle_logout(session: Session):
+    """Log out of the current session and write the transactions to the file."""
     # Write the current session's transactions to the file
     session.write_transactions()
     return None
@@ -210,6 +223,7 @@ def handle_changeplan(session: Session, transaction_handler: TransactionHandler)
 
 
 def get_text(prompt: str) -> str:
+    """Helper function to get non-empty text input from the user."""
     while True:
         text = input(prompt).strip()
         if text:
@@ -217,6 +231,7 @@ def get_text(prompt: str) -> str:
 
 
 def get_int(prompt: str) -> int:
+    """Helper function to get a valid integer input from the user."""
     while True:
         text = input(prompt).strip()
         if text.isdigit():
@@ -226,6 +241,7 @@ def get_int(prompt: str) -> int:
 
 
 def get_float(prompt: str) -> float:
+    """Helper function to get a valid float input from the user."""
     while True:
         text = input(prompt).strip()
         try:

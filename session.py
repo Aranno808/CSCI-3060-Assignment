@@ -3,7 +3,11 @@ from transaction import Transaction, TransactionCode
 
 
 class Session:
+    """Represents a user session, which can be either an admin session or a standard session for a specific account holder."""
+
     def __init__(self, kind: str, account_holder_name: str | None = None):
+        """Create a new session with the given kind and account holder name (if applicable)."""
+
         # Validate the session details
         if kind not in {"standard", "admin"}:
             raise ValueError("Invalid session kind. Must be 'admin' or 'standard'.")
@@ -30,9 +34,11 @@ class Session:
         }
 
     def read_accounts(self):
+        """Read the accounts from the accounts.txt file and return a dictionary mapping account numbers to Account objects."""
         return read_accounts()
 
     def write_transactions(self):
+        """Write the transactions from the session to the transactions.txt file."""
         with open("transactions.txt", "w") as f:
             for transaction in self.transactions:
                 parts = [

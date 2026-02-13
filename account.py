@@ -9,6 +9,8 @@ class AccountPaymentPlan(Enum):
 
 
 class Account:
+    """Represents a bank account with a holder name, account number, balance, active status, and payment plan."""
+
     def __init__(
         self,
         account_holder_name: str,
@@ -17,6 +19,7 @@ class Account:
         is_active: bool = True,
         account_payment_plan: AccountPaymentPlan = AccountPaymentPlan.STUDENT,
     ):
+        """Create a new account with the given holder name, account number, balance, status, and payment plan."""
         self.account_holder_name = account_holder_name
         self.account_number = account_number
         self.balance = balance
@@ -25,6 +28,7 @@ class Account:
 
 
 def read_accounts() -> dict[int, Account]:
+    """Load the accounts from the accounts.txt file and return a dictionary mapping account numbers to Account objects."""
     accounts = dict()
 
     filename = "accounts.txt"
