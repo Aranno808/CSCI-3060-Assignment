@@ -128,20 +128,19 @@ To get a local copy up and running follow these steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. Start the program
+1. Start the program (main.py)
 
-2. Log in as either:
-    * Standard user
-    * Admin user
+2. Enter "login" when prompted as either a "standard" or "admin" account. If testing in standard, use the information below from an existing account.
 
-3. Perform supported transactions:
-    * Withdraw
-    * Deposit
-    * Transfer
-    * Pay bill
-    * Create/Delete/Disable account (Admin only)
+3. Enter Account holder name. Example: "Bob"
 
-4. Logout to finalize the session
+4. Enter the action you would like to perfrom: "withdrawal", "transfer", "paybill", "deposit", "create", "delete", "disable", "changeplan"
+
+5. Enter account number in valid format. Example:10002 
+
+6. Logout to finalize the session
+
+7. Login in as "admin" to test creating and deleting accounts.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
