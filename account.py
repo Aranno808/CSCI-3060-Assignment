@@ -57,3 +57,19 @@ def read_accounts() -> dict[int, Account]:
             )
 
     return accounts
+
+def write_accounts(accounts: dict[int, Account]):
+    filename = "accounts.txt"
+    with open(filename, "w") as f:
+        for account in accounts.values():
+            status = "A" if account.is_active else "D"
+            balance = f"{account.balance:.2f}".zfill(8)
+            line = (
+                f"{account.account_number:05} "
+                f"{account.account_holder_name.ljust(20)} "
+                f"{status} "
+                f"{balance}"
+            )
+            f.write(line + "\n")
+
+        f.write("00000 END_OF_FILE           A 00000.00\n")

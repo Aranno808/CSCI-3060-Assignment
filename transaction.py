@@ -1,5 +1,6 @@
 from enum import Enum
 from typing import TYPE_CHECKING
+from account import write_accounts, Account
 
 if TYPE_CHECKING:
     from session import Session
@@ -250,6 +251,17 @@ class TransactionHandler:
 
         # Generate a new, unique account number
         account_number = max(self.session.accounts.keys(), default=10000) + 1
+
+        new_account = Account(
+            account_holder_name,
+            account_number,
+            initial_balance,
+            True,
+        )
+
+        self.session.accounts[account_number] = new_account
+        write_accounts(self.session.accounts)
+
 
         return Transaction(
             TransactionCode.CREATE,
