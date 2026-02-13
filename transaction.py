@@ -1,5 +1,8 @@
 from enum import Enum
-from session import Session
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from session import Session
 
 
 class TransactionCode(Enum):
@@ -31,7 +34,7 @@ class Transaction:
 
 
 class TransactionHandler:
-    def __init__(self, session: Session):
+    def __init__(self, session: "Session"):
         self.session = session
 
     def withdrawal(
