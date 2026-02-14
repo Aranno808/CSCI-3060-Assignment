@@ -39,7 +39,10 @@ class Transaction:
 
 
 class TransactionHandler:
+    """Handles transactions performed in the banking system, ensuring that they are valid based on the session kind and account details."""
+
     def __init__(self, session: "Session"):
+        """Create a new transaction handler for the given session."""
         self.session = session
 
     def withdrawal(

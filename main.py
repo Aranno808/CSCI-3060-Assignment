@@ -4,6 +4,9 @@ on standard input, handles them, and produces responses on standard output. At t
 session, the master list of accounts is loaded from "accounts.txt". At the end of a session, the
 transactions for that session are written to "transactions.txt" in the format specified in the project
 description.
+
+To run this module, run `python main.py` in the terminal.
+You can then enter commands to perform transactions.
 """
 
 from session import Session
