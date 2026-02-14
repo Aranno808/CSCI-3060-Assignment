@@ -1,6 +1,8 @@
 from enum import Enum
 from typing import TYPE_CHECKING
 
+from account import Account
+
 if TYPE_CHECKING:
     from session import Session
 
@@ -74,6 +76,11 @@ class TransactionHandler:
             )
             return
 
+        # Ensure that the account is active and available for use
+        if not account.available_for_use:
+            print("Bank account must be active and available for use.")
+            return
+
         # Ensure that the account balance is sufficient to cover the withdrawal
         new_balance = account.balance - amount
         if new_balance < 0:
@@ -124,6 +131,15 @@ class TransactionHandler:
         to_account = self.session.accounts.get(to_account_number)
         if to_account is None:
             print("Destination account number must be a valid account.")
+            return
+
+        # Ensure that both accounts are active and available for use
+        if not from_account.available_for_use:
+            print("From account must be active and available for use.")
+            return
+
+        if not to_account.available_for_use:
+            print("Destination account must be active and available for use.")
             return
 
         # Ensure that the account balance of the from account is sufficient to cover the transfer
@@ -180,6 +196,11 @@ class TransactionHandler:
             )
             return
 
+        # Ensure that the account is active and available for use
+        if not account.available_for_use:
+            print("Bank account must be active and available for use.")
+            return
+
         # Ensure that the account balance is sufficient to cover the bill payment
         new_balance = account.balance - amount
         if new_balance < 0:
@@ -221,8 +242,16 @@ class TransactionHandler:
             )
             return
 
-        # Deposited funds should not be available for use in this session
+        # Ensure that the account is active and available for use
+        if not account.available_for_use:
+            print("Bank account must be active and available for use.")
+            return
+
+        # Normally, deposited funds should not be available for use in this session
+        # But since we have not implemented the backend application, we will allow
+        # deposited funds to be available testing purposes.
         new_balance = account.balance + amount
+
         if new_balance < 0:
             print("Account balance must be at least $0.00 after deposit.")
             return
@@ -254,15 +283,13 @@ class TransactionHandler:
         # Generate a new, unique account number
         account_number = max(self.session.accounts.keys(), default=10000) + 1
 
-        # NOTE: We do not add the new account to the session's accounts here
-        # as the account should not be available until the next session after creation.
-        # However, we may run into issues if we create multiple accounts in the same
-        # session, as they will all be assigned the same account number.
-        # This can be resolved in the next version perhaps by adding an extra attribute
-        # to the Account class to indicate whether the account is pending creation
-        # (or deletion) and should not be available for transactions until the next session.
-        # This should be fine for now as the current specification says that no marks
-        # are for correctness yet.
+        # Add the new account to the session's accounts
+        self.session.accounts[account_number] = Account(
+            account_holder_name,
+            account_number,
+            initial_balance,
+            is_new=True,
+        )
 
         return Transaction(
             TransactionCode.CREATE,

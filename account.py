@@ -18,6 +18,7 @@ class Account:
         balance: float,
         is_active: bool = True,
         account_payment_plan: AccountPaymentPlan = AccountPaymentPlan.STUDENT,
+        is_new: bool = False,
     ):
         """Create a new account with the given holder name, account number, balance, status, and payment plan."""
         self.account_holder_name = account_holder_name
@@ -25,6 +26,13 @@ class Account:
         self.balance = balance
         self.is_active = is_active
         self.account_payment_plan = account_payment_plan
+        # Newly created accounts are not immediately available for use and should set this to False
+        self.is_new = is_new
+
+    @property
+    def available_for_use(self) -> bool:
+        """Helper to check whether the account is active and available for use."""
+        return self.is_active and not self.is_new
 
 
 def read_accounts() -> dict[int, Account]:
