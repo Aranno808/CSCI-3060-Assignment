@@ -1,2 +1,0 @@
-10001 Aedin Cowan          A 00000.00
-00000 END_OF_FILE           A 00000.00
