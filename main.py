@@ -8,7 +8,6 @@ description.
 
 from session import Session
 from transaction import TransactionHandler
-from account import write_accounts
 
 
 def main():
@@ -88,10 +87,9 @@ def handle_login() -> Session:
 
 
 def handle_logout(session: Session):
-    """Log out of the current session and write the account changes and transactions to their respective files."""
+    """Log out of the current session and write the transactions to the file."""
     # Write the current session's transactions to the file
     session.write_transactions()
-    write_accounts(session.accounts)
     return None
 
 

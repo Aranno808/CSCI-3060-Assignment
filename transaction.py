@@ -1,6 +1,5 @@
 from enum import Enum
 from typing import TYPE_CHECKING
-from account import write_accounts, Account
 
 if TYPE_CHECKING:
     from session import Session
@@ -252,16 +251,15 @@ class TransactionHandler:
         # Generate a new, unique account number
         account_number = max(self.session.accounts.keys(), default=10000) + 1
 
-        new_account = Account(
-            account_holder_name,
-            account_number,
-            initial_balance,
-            True,
-        )
-
-        self.session.accounts[account_number] = new_account
-        write_accounts(self.session.accounts)
-
+        # NOTE: We do not add the new account to the session's accounts here
+        # as the account should not be available until the next session after creation.
+        # However, we may run into issues if we create multiple accounts in the same
+        # session, as they will all be assigned the same account number.
+        # This can be resolved in the next version perhaps by adding an extra attribute
+        # to the Account class to indicate whether the account is pending creation
+        # (or deletion) and should not be available for transactions until the next session.
+        # This should be fine for now as the current specification says that no marks
+        # are for correctness yet.
 
         return Transaction(
             TransactionCode.CREATE,

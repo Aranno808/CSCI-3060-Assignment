@@ -58,8 +58,13 @@ def read_accounts() -> dict[int, Account]:
 
     return accounts
 
+
 def write_accounts(accounts: dict[int, Account]):
-    """Write to the accounts.txt file and store a dictionary mapping account values to Account objects."""
+    """
+    Write to the accounts.txt file and store a dictionary mapping account values to `Account` objects.
+
+    NOTE: This is just for reference as accounts.txt should only be written by the backend application.
+    """
     filename = "accounts.txt"
     with open(filename, "w") as f:
         for account in accounts.values():
