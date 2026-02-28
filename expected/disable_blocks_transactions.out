@@ -1,2 +1,14 @@
 Banking System
 > 
+Enter session kind (admin/standard): 
+> 
+Enter account holder name: 
+Enter account number: 
+Account disabled.
+> 
+Enter account holder name: 
+Enter account number: 
+Enter amount to withdraw: 
+Bank account must be active and available for use.
+> 
+> 
