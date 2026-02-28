@@ -1,9 +1,6 @@
 login
 admin
-changeplan
+disable
 Nonexistent
 99999
-changeplan
-Daisy
-10011
 logout

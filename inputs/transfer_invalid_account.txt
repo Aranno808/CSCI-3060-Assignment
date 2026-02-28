@@ -1,12 +1,8 @@
 login
 standard
-Daisy
+Ifeanyi
 transfer
-10011
+10001
 99999
-10
-transfer
-10020
-10010
 10
 logout

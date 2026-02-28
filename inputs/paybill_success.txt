@@ -1,5 +1,8 @@
 login
 standard
 Ifeanyi
-login
+paybill
+10002
+EC
+100
 logout
