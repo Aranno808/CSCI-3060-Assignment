@@ -1,24 +1,38 @@
 #!/usr/bin/env bash
+# CSCI 3060U Phase 3 - Automated Test Runner and Validator
 set -euo pipefail
 
 ACCOUNTS_FILE="accounts.txt"
-
+EXPECTED_DIR="expected"
 mkdir -p outputs
 
 shopt -s nullglob
 inputs=(inputs/*.txt)
-if (( ${#inputs[@]} == 0 )); then
-  echo "No input files found in inputs/ (expected inputs/*.txt)"
-  exit 1
-fi
 
 for infile in "${inputs[@]}"; do
   base=$(basename "$infile" .txt)
-  echo "Running $base..."
+  echo "-----------------------------------"
+  echo "Running Test: $base"
 
-  # stdout (terminal output) -> outputs/<base>.txt.out
-  # transactions file -> outputs/<base>.atf
-  python main.py "$ACCOUNTS_FILE" "outputs/${base}.atf" < "$infile" > "outputs/${base}.txt.out"
+  # Run program
+  python main.py "$ACCOUNTS_FILE" "outputs/${base}.atf" < "$infile" > "outputs/${base}.out"
+
+  # Validate transactions
+  echo "Checking Transaction File..."
+  if diff "outputs/${base}.atf" "$EXPECTED_DIR/${base}.etf" > /dev/null; then
+    echo "  [PASS] Transactions match."
+  else
+    echo "  [FAIL] Transactions differ!"
+  fi
+
+  # Validate terminal log
+  echo "Checking Terminal Log..."
+  if diff "outputs/${base}.out" "$EXPECTED_DIR/${base}.out" > /dev/null; then
+    echo "  [PASS] Terminal output matches."
+  else
+    echo "  [FAIL] Terminal output differs!"
+  fi
 done
 
-echo "Done. See outputs/ for results."
+echo "-----------------------------------"
+echo "Testing Complete. Check results and update your Failure Table."

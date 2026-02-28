@@ -221,3 +221,9 @@ accounts.txt
 
 outputs/*
 !outputs/.gitkeep
+
+# Temporarily ignored files
+.python-version
+uv.lock
+pyproject.toml
+TODO.md
