@@ -1,13 +1,14 @@
 Banking System
-> login 
-Enter session kind (admin/standard): standard
-Enter account holder name: Bob
-> withdrawal
-Enter account number: 10002
-Enter amount to withdraw: 200
-Withdrawal successful.
-> withdrawal
-Enter account number: 10002
-Enter amount to withdraw: 400
-Maximum amount that can be withdrawn in current session is $500.00 in standard mode.
-> logout
+> 
+Enter session kind (admin/standard): 
+Enter account holder name: 
+> 
+Enter account number: 
+Enter amount to withdraw: 
+Account balance must be at least $0.00 after withdrawal.
+> 
+Enter account number: 
+Enter amount to withdraw: 
+Account balance must be at least $0.00 after withdrawal.
+> 
+> 

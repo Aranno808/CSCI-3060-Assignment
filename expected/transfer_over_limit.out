@@ -1,10 +1,11 @@
 Banking System
-> login
-Enter session kind (admin/standard): standard
-Enter account holder name: Bob
-> transfer
-Enter account number to transfer from: 10002
-Enter account number to transfer to: 10001
-Enter amount to transfer: 1500
+> 
+Enter session kind (admin/standard): 
+Enter account holder name: 
+> 
+Enter account number to transfer from: 
+Enter account number to transfer to: 
+Enter amount to transfer: 
 Maximum amount that can be transferred in current session is $1000.00 in standard mode.
-> logout
+> 
+> 

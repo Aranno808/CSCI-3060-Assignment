@@ -29,7 +29,7 @@ def main():
     print("Banking System")
     while True:
         try:
-            command = input("> ").strip()
+            command = get_text("> ")
         except EOFError:
             # Allow stdin-driven tests to end cleanly
             if session is not None:
@@ -114,7 +114,7 @@ def handle_withdrawal(session: Session, transaction_handler: TransactionHandler)
 
     # Ask for the account holder's name, account number, and amount to withdraw
     if session.kind == "admin":
-        account_holder_name = input("Enter account holder name: ").strip()
+        account_holder_name = get_text("Enter account holder name: ")
     else:
         account_holder_name = session.account_holder_name
 
@@ -264,6 +264,7 @@ def get_text(prompt: str) -> str:
     """Helper function to get non-empty text input from the user."""
     while True:
         text = input(prompt).strip()
+        _print_newline_if_not_tty()
         if text:
             return text
 
@@ -272,6 +273,7 @@ def get_int(prompt: str) -> int:
     """Helper function to get a valid integer input from the user."""
     while True:
         text = input(prompt).strip()
+        _print_newline_if_not_tty()
         if text.isdigit():
             return int(text)
         else:
@@ -282,10 +284,18 @@ def get_float(prompt: str) -> float:
     """Helper function to get a valid float input from the user."""
     while True:
         text = input(prompt).strip()
+        _print_newline_if_not_tty()
         try:
             return float(text)
         except ValueError:
             print("Please enter a valid number.")
+
+
+def _print_newline_if_not_tty():
+    """Helper function to print a newline if the input is not from a terminal 
+    (e.g. during testing with stdin). This helps make the output more readable during testing."""
+    if not sys.stdin.isatty():
+        print()
 
 
 if __name__ == "__main__":

@@ -1,8 +1,9 @@
 Banking System
-> login
-Enter session kind (admin/standard): admin
-> create
-Enter account holder name: Joe
-Enter initial balance: 500
-Account created. Account number is 10004
-> logout
+> 
+Enter session kind (admin/standard): 
+> 
+Enter account holder name: 
+Enter initial balance: 
+Account created. Account number is 10005
+> 
+> 

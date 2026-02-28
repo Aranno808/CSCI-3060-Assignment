@@ -1,9 +1,10 @@
 Banking System
-> login 
-Enter session kind (admin/standard): standard
-Enter account holder name: Bob
-> withdrawal
-Enter account number: 10002
-Enter amount to withdraw: 120
-Withdrawal successful.
-> logout
+> 
+Enter session kind (admin/standard): 
+Enter account holder name: 
+> 
+Enter account number: 
+Enter amount to withdraw: 
+Account balance must be at least $0.00 after withdrawal.
+> 
+> 
