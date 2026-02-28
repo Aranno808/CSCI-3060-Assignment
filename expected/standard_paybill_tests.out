@@ -1,0 +1,26 @@
+Banking System
+> 
+Enter session kind (admin/standard): 
+Enter account holder name: 
+> 
+Enter account number: 
+Enter company name: 
+Enter amount to pay: 
+Bank account must be a valid account for the account holder currently logged in.
+> 
+Enter account number: 
+Enter company name: 
+Enter amount to pay: 
+Maximum amount that can be paid in current session is $2000.00 in standard mode.
+> 
+Enter account number: 
+Enter company name: 
+Enter amount to pay: 
+Pay bill successful.
+> 
+Enter account number: 
+Enter company name: 
+Enter amount to pay: 
+Pay bill successful.
+> 
+> 

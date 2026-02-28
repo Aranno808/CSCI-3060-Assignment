@@ -1,0 +1,21 @@
+Banking System
+> 
+Enter session kind (admin/standard): 
+> 
+Enter account holder name: 
+Enter account number: 
+Enter amount to withdraw: 
+Bank account must be a valid account for the account holder currently logged in.
+> 
+Enter account holder name: 
+Enter account number: 
+Enter company name: 
+Enter amount to pay: 
+Bank account must be a valid account for the account holder currently logged in.
+> 
+Enter account holder name: Enter account number to transfer from: 
+Enter account number to transfer to: 
+Enter amount to transfer: 
+From account number must be a valid account.
+> 
+> 

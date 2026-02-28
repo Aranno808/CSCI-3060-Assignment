@@ -1,0 +1,9 @@
+Banking System
+> 
+Enter session kind (admin/standard): 
+> 
+Enter account holder name: 
+Enter initial balance: 
+Initial balance cannot exceed $99,999.99.
+> 
+> 
