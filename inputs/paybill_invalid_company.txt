@@ -1,8 +1,7 @@
 login
 standard
-Bob
+Ifeanyi
 paybill
 10002
 XX
-100
 logout

@@ -227,3 +227,4 @@ outputs/*
 uv.lock
 pyproject.toml
 TODO.md
+sync_expected.sh

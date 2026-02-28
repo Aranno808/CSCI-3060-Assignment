@@ -1,6 +1,5 @@
 login
 admin
-Admin
 delete
 Nonexistent
 99999

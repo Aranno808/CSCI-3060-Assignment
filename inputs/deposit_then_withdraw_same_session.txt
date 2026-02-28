@@ -1,10 +1,10 @@
 login
 standard
-Bob
+Aedin
 deposit
-10002
+10001
 300
 withdrawal
-10002
+10001
 250
 logout

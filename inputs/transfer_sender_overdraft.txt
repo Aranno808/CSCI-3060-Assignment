@@ -1,8 +1,8 @@
 login
 standard
-Bob
+Ifeanyi
 transfer
 10002
 10001
-900
+99999
 logout

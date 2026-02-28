@@ -1,6 +1,6 @@
 login
 standard
-Bob
+Ifeanyi
 transfer
 10002
 10001
