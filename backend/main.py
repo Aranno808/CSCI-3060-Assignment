@@ -1,6 +1,6 @@
 import argparse
 
-from read import read_old_bank_accounts, read_transactions
+from read import read_old_master_accounts, read_transactions
 from write import write_new_current_accounts, write_new_master_accounts
 from transactions import apply_transactions
 
@@ -28,7 +28,7 @@ def main():
     args = parser.parse_args()
 
     # Read accounts and transactions, then apply transactions to accounts
-    accounts = read_old_bank_accounts(args.old_master_accounts_path)
+    accounts = read_old_master_accounts(args.old_master_accounts_path)
     transactions = read_transactions(args.transactions_path)
     apply_transactions(accounts, transactions)
 

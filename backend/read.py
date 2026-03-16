@@ -1,7 +1,7 @@
 from print_error import log_constraint_error
 
 
-def read_old_bank_accounts(file_path):
+def read_old_master_accounts(file_path):
     """
     Reads and validates the bank account file format with plan type (SP/NP)
     Returns list of accounts and prints fatal errors for invalid format

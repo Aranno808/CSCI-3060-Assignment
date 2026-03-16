@@ -56,9 +56,25 @@ def write_new_current_accounts(accounts, file_path):
 
 def write_new_master_accounts(accounts, file_path):
     """
-    Writes Master Bank Accounts File with strict validation
-    Format: NNNNN AAAAAAAAAAAAAAAAAAAA S PPPPPPPP TT
-    Where TT is account plan (SP or NP)
+    Writes a new master accounts file with multiple lines of format:
+    NNNNN_AAAAAAAAAAAAAAAAAAAA_S_PPPPPPPP_TTTT
+    Where:
+    - NNNNN is the bank account number
+    - AAAAAAAAAAAAAAAAAAAA is the account holder's name
+    - S is the account status - active (A) or disabled (D)
+    - PPPPPPPP is the current balance of the account (in Canadian dollars)
+    - TTTT is the total number of transactions
+    - _ is a space
     """
-    # TODO:
-    write_new_current_accounts(accounts, file_path)
+    with open(file_path, "w") as f:
+        for account in accounts:
+            line = (
+                f"{account['account_number'].zfill(5)} "
+                f"{account['name'].ljust(20)} "
+                f"{account['status']} "
+                f"{account['balance']:08.2f} "
+                f"{str(account['total_transactions']).zfill(4)}"
+            )
+            f.write(line + "\n")
+
+        f.write("00000 END_OF_FILE          A 00000.00 0000\n")
