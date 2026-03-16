@@ -29,6 +29,9 @@ def read_old_master_accounts(file_path):
                 transactions_str = clean_line[38:42]
                 plan_type = clean_line[43:45]
 
+                if account_number == "00000":
+                    return accounts
+
                 # Validate account number
                 if not account_number.isdigit():
                     log_constraint_error(
