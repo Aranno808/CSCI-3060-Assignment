@@ -2,7 +2,7 @@ from print_error import log_constraint_error
 
 
 def read_old_master_accounts(file_path):
-    """Reads and validates the bank account file format."""
+    """Reads and validates the old master bank accounts from the given `file_path`."""
     accounts = []
     with open(file_path, "r") as file:
         for line_num, line in enumerate(file, 1):

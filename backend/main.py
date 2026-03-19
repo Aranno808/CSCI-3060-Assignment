@@ -1,3 +1,13 @@
+"""
+This is the main module for the backend of the banking system. The backend takes the
+merged bank account transaction file and the old master bank accounts file as inputs.
+It applies the transactions to the accounts and produces two output files: the new
+current bank accounts file and the new master bank accounts file.
+
+To run this module, run: `python main.py old_master_accounts.txt merged_transactions.txt new_current_accounts.txt new_master_accounts.txt`
+The backend will apply the transactions and produce the required output files.
+"""
+
 import argparse
 
 from read import read_old_master_accounts, read_transactions
