@@ -223,8 +223,6 @@ frontend/outputs/*
 !frontend/outputs/.gitkeep
 
 # Temporarily ignored files
-frontend/.python-version
-frontend/uv.lock
-frontend/pyproject.toml
-frontend/TODO.md
+TODO.md
 frontend/sync_expected.sh
+backend/*.txt
