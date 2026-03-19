@@ -104,6 +104,8 @@ Key Features:
 
 <img width="1706" height="900" alt="mermaid-diagram-2026-02-13-015709" src="https://github.com/user-attachments/assets/19192f01-1a31-4f41-8f77-5b5c1f31bd81" />
 
+Editable Mermaid source: `docs/uml-class-diagram.md`
+
 ## Getting Started
 
 To get a local copy up and running follow these steps.
@@ -117,27 +119,151 @@ To get a local copy up and running follow these steps.
 1. Clone the repo
 ```sh
 git clone https://github.com/Aranno808/CSCI-3060-Assignment
+cd CSCI-3060-Assignment
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-To start the program, run:
+This repository has two command-line entry points:
+
+* `frontend/main.py` handles interactive banking sessions and writes a daily transaction file
+* `backend/main.py` applies a merged transaction file to a master accounts file
+
+### Frontend
+
+Run the frontend from the repository root:
 ```sh
-python main.py <accounts_file> <transaction_output_file>
+python frontend/main.py frontend/accounts.txt frontend/outputs/manual.atf
 ```
-For example, you can run:
+
+Arguments:
+
+* `accounts_file`: the current accounts file to load at login
+* `transaction_output_file`: where the session's serialized transactions will be written on logout
+
+Example interactive session:
+```text
+Banking System
+> login
+Enter session kind (admin/standard): standard
+Enter account holder name: Ifeanyi
+> paybill
+Enter account number: 10002
+Enter company name: EC
+Enter amount to pay: 100
+Pay bill successful.
+> logout
+```
+
+This produces a transaction file like:
+```text
+03 Ifeanyi              10002 00100.00 EC
+00                      00000 00000.00
+```
+
+You can also replay one of the included test scenarios without typing anything manually:
 ```sh
-python main.py accounts.txt transactions.txt
+python frontend/main.py frontend/accounts.txt frontend/outputs/paybill_success.atf < frontend/inputs/paybill_success.txt
+```
+
+Useful frontend files already included in the repo:
+
+* `frontend/accounts.txt`: starter account data used by the frontend
+* `frontend/inputs/*.txt`: scripted command sequences for stdin-driven runs
+* `frontend/expected/*.etf`: expected transaction-file outputs
+* `frontend/expected/*.out`: expected terminal output logs
+
+Example current accounts file:
+```text
+10001 Aedin                A 00050.00
+10002 Ifeanyi              A 01050.00
+10003 Aranno               A 00500.00
+10004 Jhaden               D 01500.00
+00000 END_OF_FILE          A 00000.00
+```
+
+Field layout:
+
+* account number: 5 digits
+* account holder name: 20 characters
+* status: `A` for active or `D` for disabled
+* balance: fixed-width amount in dollars
+
+### Backend
+
+Run the backend from the repository root:
+```sh
+python backend/main.py <old_master_accounts_file> <merged_transactions_file> <new_current_accounts_file> <new_master_accounts_file>
+```
+
+Example:
+```sh
+python backend/main.py backend/old_master_accounts.txt backend/merged_transactions.txt backend/new_current_accounts.txt backend/new_master_accounts.txt
+```
+
+Create the two input files first, then run the command above.
+
+The backend expects:
+
+`old_master_accounts.txt`
+```text
+10001 Alice                A 01000.00 0000 SP
+10002 Bob                  A 00500.00 0000 NP
+00000 END_OF_FILE          A 00000.00 0000 NP
+```
+
+`merged_transactions.txt`
+```text
+04 Alice                10001 00050.00
+02 Alice                10001 00025.00 10002
+00                      00000 00000.00
+```
+
+With those inputs, the backend writes output files similar to:
+
+`new_current_accounts.txt`
+```text
+10001 Alice                A 01024.90 SP
+10002 Bob                  A 00525.00 NP
+00000 END_OF_FILE          A 00000.00 NP
+```
+
+`new_master_accounts.txt`
+```text
+10001 Alice                A 01024.90 0002 SP
+10002 Bob                  A 00525.00 0000 NP
+00000 END_OF_FILE          A 00000.00 0000 NP
+```
+
+### Common Workflows
+
+Create a transaction file from one frontend session:
+```sh
+python frontend/main.py frontend/accounts.txt frontend/outputs/session.atf
+```
+
+Replay an included admin scenario:
+```sh
+python frontend/main.py frontend/accounts.txt frontend/outputs/admin_create_success.atf < frontend/inputs/admin_create_success.txt
+```
+
+Inspect the expected output for comparison:
+```sh
+cat frontend/expected/admin_create_success.etf
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Running Automated Tests
+The automated test scripts live in `frontend/` and are written for a POSIX shell such as Git Bash, WSL, or Linux/macOS.
+
+From the repository root:
 ```sh
+cd frontend
 chmod +x run_tests.sh
-./run_tests.sh 
+./run_tests.sh
 ```
 This will: 
 - Execute all the test cases in the `inputs` directory
@@ -145,10 +271,10 @@ This will:
 
 ```sh
 chmod +x check_tests.sh
-./check_tests.sh 
+./check_tests.sh
 ```
 This will: 
-- Diffs outputs against expected_outputs and prints the test result (PASS / FAIL)
+- Diff outputs against the files in `expected/` and print the test result (PASS / FAIL)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
