@@ -198,3 +198,5 @@ def read_transactions(file_path):
                 "miscellaneous": miscellaneous,
             }
         )
+
+    return transactions

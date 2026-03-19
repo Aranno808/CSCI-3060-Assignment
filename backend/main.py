@@ -16,6 +16,10 @@ from transactions import apply_transactions
 
 
 def main():
+    """Entry point. Reads the old master accounts and merged transactions,
+    applies all transactions, and writes the updated current and master
+    account files.
+    """
 
     # Parse command line arguments
     parser = argparse.ArgumentParser(

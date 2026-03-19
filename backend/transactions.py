@@ -29,7 +29,9 @@ def apply_transactions(accounts, transactions):
         if transaction_code == TransactionCode.WITHDRAWAL.value:
             handle_withdrawal(accounts, account_number, amount)
         elif transaction_code == TransactionCode.TRANSFER.value:
-            handle_transfer(accounts, account_number, miscellaneous, amount)
+            handle_transfer(
+                accounts, account_number, miscellaneous.lstrip("0") or "0", amount
+            )
         elif transaction_code == TransactionCode.PAYBILL.value:
             handle_paybill(accounts, account_number, amount)
         elif transaction_code == TransactionCode.DEPOSIT.value:
@@ -238,7 +240,7 @@ def handle_changeplan(accounts, account_number):
         return
 
     # Update the account and the transaction count
-    account["plan"] = "SP" if account["plan"] == "NP" else "NP"
+    account["plan"] = "NP"
     account["balance"] = new_balance
     increment_transaction_count(account)
 
