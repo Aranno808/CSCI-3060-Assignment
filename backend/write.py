@@ -3,9 +3,18 @@ from print_error import log_constraint_error
 
 def write_new_current_accounts(accounts, file_path):
     """
-    Writes Current Bank Accounts File with strict validation
-    Format: NNNNN AAAAAAAAAAAAAAAAAAAA S PPPPPPPP TT
-    Where TT is account plan (SP or NP)
+    Writes the new current bank accounts file with strict validation in the format:
+    NNNNN_AAAAAAAAAAAAAAAAAAAA_S_PPPPPPPP_TT
+    Where: 
+    - NNNNN is the bank account number
+    - AAAAAAAAAAAAAAAAAAAA is the account holder's name
+    - S is the account status - active (A) or disabled (D)
+    - PPPPPPPP is the current balance of the account (in Canadian dollars)
+    - TT is the account plan type (SP or NP)
+    - _ is a space
+
+    Note: As mentioned in the course Discord, we have included the account plan type 
+    in the current accounts file.
     """
     with open(file_path, "w") as file:
         for acc in accounts:
@@ -60,14 +69,18 @@ def write_new_current_accounts(accounts, file_path):
 def write_new_master_accounts(accounts, file_path):
     """
     Writes a new master accounts file with multiple lines of format:
-    NNNNN_AAAAAAAAAAAAAAAAAAAA_S_PPPPPPPP_TTTT
+    NNNNN_AAAAAAAAAAAAAAAAAAAA_S_PPPPPPPP_TTTT_XX
     Where:
     - NNNNN is the bank account number
     - AAAAAAAAAAAAAAAAAAAA is the account holder's name
     - S is the account status - active (A) or disabled (D)
     - PPPPPPPP is the current balance of the account (in Canadian dollars)
     - TTTT is the total number of transactions
+    - XX is the account plan type (SP or NP)
     - _ is a space
+
+    Note: As mentioned in the course Discord, we have included the account plan 
+    type in the master accounts file. 
     """
     # The master bank accounts must be sorted by account number
     accounts = sorted(accounts, key=lambda x: x["account_number"])
@@ -155,7 +168,8 @@ def write_new_master_accounts(accounts, file_path):
                 f"{account['name'].ljust(20)} "
                 f"{account['status']} "
                 f"{account['balance']:08.2f} "
-                f"{str(account['total_transactions']).zfill(4)}"
+                f"{str(account['total_transactions']).zfill(4)} "
+                f"{account['plan']}"
             )
             f.write(line + "\n")
 
