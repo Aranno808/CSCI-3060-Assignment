@@ -1,0 +1,4 @@
+Banking System
+> Enter session kind (admin/standard): > Invalid command.
+> Enter account holder name: Enter account number: Account number must be a valid account.
+> Note: Normally, accounts.txt should only be written by the backend application. Since the backend has not been implemented yet, we will write to accounts.txt to show changes and make the program easier to test. 

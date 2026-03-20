@@ -1,0 +1,11 @@
+Banking System
+> 
+Enter session kind (admin/standard): 
+Enter account holder name: 
+> 
+Enter account number to transfer from: 
+Enter account number to transfer to: 
+Enter amount to transfer: 
+Cannot transfer negative or zero amount.
+> 
+> 

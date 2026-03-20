@@ -1,0 +1,10 @@
+Banking System
+> 
+Enter session kind (admin/standard): 
+Enter account holder name: 
+> 
+Enter account number: 
+Enter amount to withdraw: 
+Cannot withdraw negative or zero amount.
+> 
+> 

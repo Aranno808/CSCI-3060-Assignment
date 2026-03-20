@@ -1,0 +1,15 @@
+--- expected_outputs/withdraw_negative_amount.txt	2026-02-27 13:59:44.178517100 -0500
++++ outputs/withdraw_negative_amount.txt.out	2026-02-27 20:30:50.731370600 -0500
+@@ -1,9 +1,3 @@
+ Banking System
+-> login
+-Enter session kind (admin/standard): standard
+-Enter account holder name: Bob
+-> withdrawal
+-Enter account number: 10002
+-Enter amount to withdraw: -50
+-Cannot withdraw negative amount.
+-> logout
+\ No newline at end of file
++> Enter session kind (admin/standard): Enter account holder name: > Enter account number: Enter amount to withdraw: Cannot withdraw negative amount.
++> Note: Normally, accounts.txt should only be written by the backend application. Since the backend has not been implemented yet, we will write to accounts.txt to show changes and make the program easier to test. 

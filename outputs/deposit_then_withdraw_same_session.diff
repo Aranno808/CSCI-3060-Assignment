@@ -1,0 +1,20 @@
+--- expected_outputs/deposit_then_withdraw_same_session.txt	2026-02-27 13:59:44.164468800 -0500
++++ outputs/deposit_then_withdraw_same_session.txt.out	2026-02-27 20:30:47.227925400 -0500
+@@ -1,13 +1,4 @@
+ Banking System
+-> login
+-Enter session kind (admin/standard): standard
+-Enter account holder name: Bob
+-> deposit
+-Enter account number: 10002
+-Enter amount to deposit: 300
+-Deposit successful.
+-> withdrawal
+-Enter account number: 10002
+-Enter amount to withdraw: 250
+-Account balance must be at least $0.00 after withdrawal.
+-> logout
+\ No newline at end of file
++> Enter session kind (admin/standard): Enter account holder name: > Enter account number: Enter amount to deposit: Deposit successful.
++> Enter account number: Enter amount to withdraw: Withdrawal successful.
++> Note: Normally, accounts.txt should only be written by the backend application. Since the backend has not been implemented yet, we will write to accounts.txt to show changes and make the program easier to test. 

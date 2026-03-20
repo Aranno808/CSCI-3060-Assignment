@@ -1,0 +1,10 @@
+Banking System
+> 
+Enter session kind (admin/standard): 
+Enter account holder name: 
+> 
+Enter account number: 
+Enter amount to withdraw: 
+Maximum amount that can be withdrawn in current session is $500.00 in standard mode.
+> 
+> 

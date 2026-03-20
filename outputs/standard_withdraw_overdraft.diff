@@ -1,0 +1,15 @@
+--- expected_outputs/standard_withdraw_overdraft.txt	2026-02-27 13:59:44.170494200 -0500
++++ outputs/standard_withdraw_overdraft.txt.out	2026-02-27 20:30:49.023264200 -0500
+@@ -1,9 +1,3 @@
+ Banking System
+-> login 
+-Enter session kind (admin/standard): standard
+-Enter account holder name: Bob
+-> withdrawal
+-Enter account number: 10002
+-Enter amount to withdraw: 400
+-Account balance must be at least $0.00 after withdrawal.
+-> logout
+\ No newline at end of file
++> Enter session kind (admin/standard): Enter account holder name: > Enter account number: Enter amount to withdraw: Account balance must be at least $0.00 after withdrawal.
++> Note: Normally, accounts.txt should only be written by the backend application. Since the backend has not been implemented yet, we will write to accounts.txt to show changes and make the program easier to test. 

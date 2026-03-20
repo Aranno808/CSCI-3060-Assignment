@@ -1,0 +1,14 @@
+Banking System
+> 
+Enter session kind (admin/standard): 
+Enter account holder name: 
+> 
+Enter account number: 
+Enter amount to deposit: 
+Deposited funds will be available for use in the next session.
+> 
+Enter account number: 
+Enter amount to withdraw: 
+Account balance must be at least $0.00 after withdrawal.
+> 
+> 

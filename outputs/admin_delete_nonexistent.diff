@@ -1,0 +1,15 @@
+--- expected_outputs/admin_delete_nonexistent.txt	2026-02-27 13:59:44.164468800 -0500
++++ outputs/admin_delete_nonexistent.txt.out	2026-02-27 20:30:46.943870000 -0500
+@@ -1,8 +1,4 @@
+ Banking System
+-> login
+-Enter session kind (admin/standard): admin
+-> delete
+-Enter account holder name: Nonexistent
+-Enter account number: 99999
+-Account number must be a valid account.
+-> logout
+\ No newline at end of file
++> Enter session kind (admin/standard): > Invalid command.
++> Enter account holder name: Enter account number: Account number must be a valid account.
++> Note: Normally, accounts.txt should only be written by the backend application. Since the backend has not been implemented yet, we will write to accounts.txt to show changes and make the program easier to test. 

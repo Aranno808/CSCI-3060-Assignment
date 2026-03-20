@@ -1,0 +1,3 @@
+Banking System
+> Enter session kind (admin/standard): Enter account holder name: > You are already logged in. Please log out before logging in again.
+> Note: Normally, accounts.txt should only be written by the backend application. Since the backend has not been implemented yet, we will write to accounts.txt to show changes and make the program easier to test. 

@@ -1,0 +1,3 @@
+Banking System
+> Enter session kind (admin/standard): Enter account holder name: > Enter account number to transfer from: Enter account number to transfer to: Enter amount to transfer: Account balance of both accounts must be at least $0.00 after transfer
+> Note: Normally, accounts.txt should only be written by the backend application. Since the backend has not been implemented yet, we will write to accounts.txt to show changes and make the program easier to test. 

@@ -1,0 +1,13 @@
+--- expected_outputs/login_after_login.txt	2026-02-27 20:17:18.020514200 -0500
++++ outputs/login_after_login.txt.out	2026-02-27 20:30:47.541810500 -0500
+@@ -1,7 +1,3 @@
+ Banking System
+-> login
+-Enter session kind (admin/standard): standard
+-Enter account holder name: Bob
+-> login
+-You are already logged in. Please log out before logging in again.
+-> logout
+\ No newline at end of file
++> Enter session kind (admin/standard): Enter account holder name: > You are already logged in. Please log out before logging in again.
++> Note: Normally, accounts.txt should only be written by the backend application. Since the backend has not been implemented yet, we will write to accounts.txt to show changes and make the program easier to test. 

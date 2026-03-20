@@ -1,0 +1,13 @@
+--- expected_outputs/transactions_after_logout.txt	2026-02-27 20:20:55.802134800 -0500
++++ outputs/transactions_after_logout.txt.out	2026-02-27 20:30:49.624648000 -0500
+@@ -1,7 +1,2 @@
+-Banking Session
+-> login   
+-Enter session kind (admin/standard): standard
+-Enter account holder name: Bob
+-> logout
+-> withdrawal
+-Please log in to perform transactions.
+\ No newline at end of file
++Banking System
++> Enter session kind (admin/standard): Enter account holder name: > Note: Normally, accounts.txt should only be written by the backend application. Since the backend has not been implemented yet, we will write to accounts.txt to show changes and make the program easier to test. 
