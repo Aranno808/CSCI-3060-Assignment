@@ -1,0 +1,8 @@
+login
+standard
+Alice
+transfer
+10005
+10006
+300
+logout

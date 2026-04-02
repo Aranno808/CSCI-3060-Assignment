@@ -1,0 +1,8 @@
+login
+standard
+Chloe
+transfer
+10007
+10002
+600
+logout

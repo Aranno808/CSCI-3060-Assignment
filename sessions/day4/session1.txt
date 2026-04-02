@@ -1,0 +1,8 @@
+login
+standard
+Alice
+paybill
+10005
+FI
+400
+logout

@@ -1,0 +1,8 @@
+login
+standard
+Ifeanyi
+paybill
+10002
+CQ
+400
+logout

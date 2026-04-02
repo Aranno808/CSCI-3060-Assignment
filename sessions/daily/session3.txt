@@ -1,0 +1,11 @@
+login
+standard
+Aranno
+deposit
+10003
+1500
+paybill
+10003
+EC
+400
+logout

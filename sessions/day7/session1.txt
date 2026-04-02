@@ -1,0 +1,10 @@
+login
+admin
+withdrawal
+Bob
+10006
+500
+delete
+Bob
+10006
+logout

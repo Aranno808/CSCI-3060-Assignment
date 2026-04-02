@@ -1,0 +1,9 @@
+login
+admin
+create
+Alice
+5000
+create
+Bob
+1500
+logout

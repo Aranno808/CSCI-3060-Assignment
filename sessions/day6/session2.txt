@@ -1,0 +1,10 @@
+login
+admin
+disable
+Alice
+10005
+deposit
+Aranno
+10003
+6000
+logout

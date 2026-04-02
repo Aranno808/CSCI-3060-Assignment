@@ -1,0 +1,7 @@
+login
+standard
+Aedin
+withdrawal
+10001
+50
+logout

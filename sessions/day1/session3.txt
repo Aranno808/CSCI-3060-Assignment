@@ -1,0 +1,8 @@
+login
+standard
+Aranno
+paybill
+10003
+EC
+500
+logout

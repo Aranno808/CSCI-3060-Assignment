@@ -1,0 +1,11 @@
+login
+standard
+Aedin
+deposit
+10001
+700
+paybill
+10001
+EC
+200
+logout

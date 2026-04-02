@@ -1,0 +1,11 @@
+login
+standard
+Chloe
+deposit
+10007
+600
+transfer
+10007
+10003
+500
+logout

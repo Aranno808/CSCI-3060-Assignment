@@ -1,0 +1,12 @@
+login
+admin
+create
+Alice
+800
+changeplan
+Alice
+10005
+create
+Bob
+1500
+logout

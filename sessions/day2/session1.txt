@@ -1,0 +1,6 @@
+login
+admin
+create
+Chloe
+2000
+logout

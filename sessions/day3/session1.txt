@@ -1,0 +1,11 @@
+login
+standard
+Chloe
+paybill
+10007
+CQ
+600
+deposit
+10007
+300
+logout

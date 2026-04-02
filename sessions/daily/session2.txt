@@ -1,0 +1,11 @@
+login
+standard
+Ifeanyi
+withdrawal
+10002
+300
+transfer
+10002
+10001
+400
+logout

@@ -1,0 +1,11 @@
+login
+admin
+deposit
+Aranno
+10003
+5000
+withdrawal
+Ifeanyi
+10002
+600
+logout
