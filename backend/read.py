@@ -106,7 +106,7 @@ def read_old_master_accounts(file_path):
                         fatal=True,
                     )
                     continue
-
+                
                 accounts.append(
                     {
                         "account_number": account_number,
@@ -153,6 +153,8 @@ def read_transactions(file_path):
                 fatal=True,
             )
 
+        line = line.rstrip("\n")
+        
         transaction_code = line[0:2]
         account_name = line[3:23].strip()
         account_number = line[24:29]
@@ -179,7 +181,7 @@ def read_transactions(file_path):
             )
             continue
         else:
-            account_number = account_number.lstrip("0") or "0"
+            account_number = account_number
 
         if amount[5] != "." or not (amount[:5] + amount[6:]).isdigit():
             log_constraint_error(

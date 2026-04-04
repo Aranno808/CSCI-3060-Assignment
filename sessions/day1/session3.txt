@@ -4,5 +4,5 @@ Aranno
 paybill
 10003
 EC
-500
+50
 logout

@@ -16,6 +16,8 @@ def write_new_current_accounts(accounts, file_path):
     Note: As mentioned in the course Discord, we have included the account plan type
     in the current accounts file.
     """
+    accounts = sorted(accounts, key=lambda x: int(x["account_number"]))
+
     with open(file_path, "w") as file:
         for acc in accounts:
             # Validate account number
@@ -109,7 +111,7 @@ def write_new_master_accounts(accounts, file_path):
     type in the master accounts file.
     """
     # The master bank accounts must be sorted by account number
-    accounts = sorted(accounts, key=lambda x: x["account_number"])
+    accounts = sorted(accounts, key=lambda x: int(x["account_number"]))
 
     with open(file_path, "w") as f:
         for account in accounts:

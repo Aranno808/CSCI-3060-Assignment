@@ -3,47 +3,45 @@
 # Daily banking system simulation
 # Runs several frontend sessions, merges transactions, then runs backend
 
-echo "Starting Daily Banking Simulation"
+# -------- CONFIG --------
+FRONTEND=frontend/main.py
+BACKEND=backend/main.py
 
-> merged_transactions.txt
+CURRENT_ACCOUNTS=frontend/accounts.txt
+OLD_MASTER=backend/old_master_accounts.txt
+NEW_MASTER=backend/new_master_accounts.txt
+MERGED_FILE=merged_transactions.txt
+OUTPUT_FILE="transaction_output.txt"
 
-# Input Files
+# List of session files
 DAY_FOLDER=$1
 
-SESSION_INPUT1="$DAY_FOLDER/session1.txt"
-SESSION_INPUT2="$DAY_FOLDER/session2.txt"
-SESSION_INPUT3="$DAY_FOLDER/session3.txt"
+SESSIONS=("$DAY_FOLDER/session1.txt" "$DAY_FOLDER/session2.txt" "$DAY_FOLDER/session3.txt")
 
-# Accounts Files
-OLD_MASTER="backend/old_master_accounts.txt"
-NEW_MASTER="backend/new_master_accounts.txt"
-NEW_CURRENT="frontend/accounts.txt"
+# Clean old merged file
+> $MERGED_FILE
 
-# Transaction Files
-SESSION1="session1_transactions.txt"
-SESSION2="session2_transactions.txt"
-SESSION3="session3_transactions.txt"
 
-# Merged Transaction File
-MERGED_FILE="merged_transactions.txt"
+echo "Starting Daily Banking Simulation"
 
-# Run frontend sessions
-echo "Running Frontend Session 1..."
-python frontend/main.py $NEW_CURRENT $SESSION1 < $SESSION_INPUT1
+# Run Front End for each session
+for SESSION in "${SESSIONS[@]}"
+do
+    echo "Processing $SESSION..."
 
-echo "Running Frontend Session 2..."
-python frontend/main.py $NEW_CURRENT $SESSION2 < $SESSION_INPUT2
+    python $FRONTEND $CURRENT_ACCOUNTS $OUTPUT_FILE < $SESSION
 
-echo "Running Frontend Session 3..."
-python frontend/main.py $NEW_CURRENT $SESSION3 < $SESSION_INPUT3
+    # Append to merged file and remove '00' lines
+    grep -v '^00' "$OUTPUT_FILE" >> "$MERGED_FILE"
+done
 
-# Merge transaction files
-echo "Merging Transaction Files..."
-cat $SESSION1 $SESSION2 $SESSION3 > $MERGED_FILE
+# Add terminator line
+echo "00                      00000 00000.00  " >> "$MERGED_FILE"
 
-# Run backend
-echo "Running Backend..."
-python backend/main.py $OLD_MASTER $MERGED_FILE $NEW_CURRENT $NEW_MASTER
+# Run Back end
+echo "Running Back End..."
+
+python $BACKEND $OLD_MASTER $MERGED_FILE $CURRENT_ACCOUNTS $NEW_MASTER
 
 cp backend/new_master_accounts.txt backend/old_master_accounts.txt
 

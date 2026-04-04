@@ -3,7 +3,7 @@ admin
 withdrawal
 Bob
 10006
-500
+400
 delete
 Bob
 10006

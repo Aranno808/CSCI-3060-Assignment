@@ -30,7 +30,7 @@ def apply_transactions(accounts, transactions):
             handle_withdrawal(accounts, account_number, amount)
         elif transaction_code == TransactionCode.TRANSFER.value:
             handle_transfer(
-                accounts, account_number, miscellaneous.lstrip("0") or "0", amount
+                accounts, account_number, miscellaneous, amount
             )
         elif transaction_code == TransactionCode.PAYBILL.value:
             handle_paybill(accounts, account_number, amount)
@@ -65,9 +65,6 @@ def handle_withdrawal(accounts, account_number, amount):
         )
         return
 
-    print(f"[DEBUG] Withdrawal transaction detected for account {account_number}")
-    print(f"[DEBUG] Old balance: {account['balance']} | Withdrawal amount: {amount}")
-
     # Calculate the new balance after the transaction
     transaction_cost = get_transaction_cost(account)
     new_balance = account["balance"] - (amount + transaction_cost)
@@ -84,8 +81,6 @@ def handle_withdrawal(accounts, account_number, amount):
     # Update the account and the transaction count
     account["balance"] = new_balance
     increment_transaction_count(account)
-
-    print(f"[DEBUG] New balance: {account['balance']}")
 
 
 def handle_transfer(accounts, from_account_number, to_account_number, amount):
@@ -131,17 +126,10 @@ def handle_transfer(accounts, from_account_number, to_account_number, amount):
         )
         return
     
-    print(f"[DEBUG] Transfer transaction detected for account {from_account_number}")
-    print(f"[DEBUG] Old balance from: {from_account['balance']} | Transfer amount: {amount}")
-    print(f"[DEBUG] Old balance to: {to_account['balance']}")
-
     # Update the accounts and the transaction count for the from account
     from_account["balance"] = from_account_new_balance
     to_account["balance"] = to_account_new_balance
     increment_transaction_count(from_account)
-
-    print(f"[DEBUG] New balance from: {from_account['balance']}")
-    print(f"[DEBUG] New balance to: {to_account['balance']}")
 
 
 def handle_paybill(accounts, account_number, amount):
@@ -155,9 +143,7 @@ def handle_paybill(accounts, account_number, amount):
             fatal=False,
         )
         return
-    
-    print(f"[DEBUG] Paybill transaction detected for account {account_number}")
-    print(f"[DEBUG] Old balance: {account['balance']} | Paybill amount: {amount}")
+
 
     # Calculate the new balance after the transaction
     transaction_cost = get_transaction_cost(account)
@@ -176,7 +162,6 @@ def handle_paybill(accounts, account_number, amount):
     account["balance"] = new_balance
     increment_transaction_count(account)
 
-    print(f"[DEBUG] New balance: {account['balance']}")
 
 
 def handle_deposit(accounts, account_number, amount):
@@ -191,8 +176,6 @@ def handle_deposit(accounts, account_number, amount):
         )
         return
 
-    print(f"[DEBUG] Deposit transaction detected for account {account_number}")
-    print(f"[DEBUG] Old balance: {account['balance']} | Deposit amount: {amount}")
 
     # Calculate the new balance after the transaction
     transaction_cost = get_transaction_cost(account)
@@ -211,7 +194,6 @@ def handle_deposit(accounts, account_number, amount):
     account["balance"] = new_balance
     increment_transaction_count(account)
 
-    print(f"[DEBUG] New balance: {account['balance']}")
 
 
 def handle_create(accounts, account_number, account_name, amount):

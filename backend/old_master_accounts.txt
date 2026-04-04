@@ -1,5 +1,7 @@
-10001 Aedin                A 00050.00 0000 SP
-10002 Ifeanyi              A 04050.00 0000 SP
-10003 Aranno               A 00500.00 0000 NP
+10001 Aedin                A 01549.70 0006 SP
+10002 Ifeanyi              A 00499.85 0003 SP
+10003 Aranno               A 12749.70 0003 NP
 10004 Jhaden               D 01500.00 0000 SP
+10005 Alice                D 03499.80 0004 SP
+10007 Chloe                A 01199.75 0005 SP
 00000 END_OF_FILE          A 00000.00 0000 NP
