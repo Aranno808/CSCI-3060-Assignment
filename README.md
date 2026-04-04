@@ -278,6 +278,37 @@ This will:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+## Running Daily/Weekly Scripts
+The daily/weekly scripts reside in the main directory and are written for a POSIX shell such as Git Bash, WSL, or Linux/macOS.
+
+### Daily Script
+To run the daily script:
+```sh
+chmod +x ./daily.sh
+./daily.sh sessions/daily
+```
+This will:
+- Execute all the sessions located in the `sessions/daily` directory
+- Merge each generated transaction in the `merged_transaction.txt` file
+- Run the backend program using the merged transactions
+- Produce an updated `new_master_accounts.txt`
+
+### Weekly Script
+To run the weekly script:
+```sh
+chmod +x ./weekly.sh
+./weekly.sh
+```
+This will:
+- Execute all daily session folders (`sessions/day1`, `sessions/day2`, etc.)
+- Run the `day.sh` process for each day (works similarly to `daily.sh` with some tweaks)
+- Update the master accounts file after each day
+- Carry the updated master accounts forward to the next day
+- Produce the final `new_master_accounts.txt` at the end of the week
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- Shield Links -->
 [Python]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
 [contributors-shield]: https://img.shields.io/github/contributors/Aranno808/CSCI-3060-Assignment.svg?style=for-the-badge
