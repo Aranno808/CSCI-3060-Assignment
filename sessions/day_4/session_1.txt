@@ -1,0 +1,6 @@
+login
+admin
+changeplan
+Aedin
+10001
+logout

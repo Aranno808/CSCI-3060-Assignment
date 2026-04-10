@@ -1,0 +1,7 @@
+login
+standard
+Bob
+withdrawal
+10000
+40
+logout

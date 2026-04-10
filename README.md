@@ -70,7 +70,16 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#frontend">Frontend</a></li>
+        <li><a href="#backend">Backend</a></li>
+        <li><a href="#daily-script">Daily Script</a></li>
+        <li><a href="#weekly-script">Weekly Script</a></li>
+        <li><a href="#common-workflows">Common Workflows</a></li>
+      </ul>
+    </li>
     <li><a href="#tests">Running Automated Tests</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
   </ol>
@@ -236,6 +245,55 @@ With those inputs, the backend writes output files similar to:
 10002 Bob                  A 00525.00 0000 NP
 00000 END_OF_FILE          A 00000.00 0000 NP
 ```
+
+### Daily Script
+
+`daily.sh` simulates one full day of banking operations. It runs the Front End once for each session file in a given directory, merges all the resulting transaction files into one, then passes that merged file to the Back End.
+
+```sh
+./daily.sh <sessions_dir> <current_accounts_file> <old_master_accounts_file>
+```
+
+Arguments:
+
+* `sessions_dir`: directory containing `.txt` session input files — each file is one Front End session, processed in alphabetical order
+* `current_accounts_file`: current accounts file fed to the Front End
+* `old_master_accounts_file`: master accounts file fed to the Back End
+
+Outputs are always written to:
+* `outputs/daily/current_accounts.txt`
+* `outputs/daily/master_accounts.txt`
+
+Example:
+```sh
+./daily.sh sessions/day_1 frontend/accounts.txt backend/old_master_accounts.txt
+```
+
+To customise which transactions run, edit or add `.txt` files inside the sessions directory. Each file should contain a complete Front End session — starting with `login` and ending with `logout`.
+
+### Weekly Script
+
+`weekly.sh` simulates a full week of banking operations by calling `daily.sh` seven times — once per day. It automatically chains each day's output current accounts file as the next day's input.
+
+```sh
+./weekly.sh <initial_current_accounts_file> <initial_master_accounts_file>
+```
+
+Arguments:
+
+* `initial_current_accounts_file`: starting current accounts file used on Day 1
+* `initial_master_accounts_file`: starting master accounts file used on Day 1
+
+Session files are read from `sessions/day_1/` through `sessions/day_7/`. Outputs are written to:
+* `outputs/weekly/day_1/current_accounts.txt` and `master_accounts.txt`
+* through `outputs/weekly/day_7/`
+
+Example:
+```sh
+./weekly.sh frontend/accounts.txt backend/old_master_accounts.txt
+```
+
+All output directories are created automatically if they do not exist.
 
 ### Common Workflows
 

@@ -226,3 +226,10 @@ frontend/outputs/*
 TODO.md
 frontend/sync_expected.sh
 backend/*.txt
+
+# Test output files
+*.aft
+*.out
+
+# Output files from Phase 6
+outputs/

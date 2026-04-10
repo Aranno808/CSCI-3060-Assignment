@@ -1,0 +1,8 @@
+login
+standard
+Ifeanyi
+transfer
+10002
+10001
+200
+logout

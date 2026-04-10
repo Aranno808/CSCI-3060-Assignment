@@ -1,0 +1,17 @@
+login
+admin
+withdrawal
+Ifeanyi
+10002
+300
+paybill
+Ifeanyi
+10002
+EC
+300
+transfer
+Ifeanyi
+10002
+10001
+300
+logout

@@ -1,0 +1,10 @@
+login
+standard
+Aedin
+deposit
+10001
+300
+withdrawal
+10001
+250
+logout

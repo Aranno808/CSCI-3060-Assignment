@@ -1,0 +1,10 @@
+login
+admin
+disable
+Aedin
+10001
+withdrawal
+Aedin
+10001
+10
+logout
